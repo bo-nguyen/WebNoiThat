@@ -1,0 +1,73 @@
+﻿@{
+    var newProducts = ViewBag.NewProducts as List<WebNoiThat.Models.SanPham>
+        ?? new List<WebNoiThat.Models.SanPham>();
+
+    if (newProducts.Count == 0)
+    {
+        newProducts = new dbBanHangContext().SanPhams
+            .Where(x => x.Khoa == false)
+            .OrderByDescending(x => x.MaSp)
+            .Take(4)
+            .ToList();
+    }
+}
+
+@foreach (var item in newProducts)
+{
+    <div class="col-lg-3 col-md-4 col-sm-6 pt-6">
+        <div class="product-item">
+            <div class="product-img">
+                <a href="/san-pham/@item.MaSp">
+                    <img class="primary-img" src="~/images/sanpham/@item.Anh" alt="@item.TenSp">
+                </a>
+                @if (item.GiaGiam.HasValue && item.GiaGiam < item.GiaBan)
+                {
+                    var phanTram = Math.Round((1 - (double)item.GiaGiam.Value / item.GiaBan.Value) * 100);
+                    if (phanTram > 0)
+                    {
+                        <div class="product-discount-tag">
+                            <span>-@phanTram%</span>
+                        </div>
+                    }
+                }
+                <div class="product-add-action">
+                    <ul>
+                        <li>
+                            <a href="/san-pham/@item.MaSp" data-tippy="Xem chi tiết" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme="sharpborder">
+                                <i class="pe-7s-look"></i>
+                            </a>
+                        </li>
+                        <li class="add-to-cart-btn" data-id="@item.MaSp">
+                            <a href="javascript:void(0)" data-tippy="Thêm vào giỏ" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme="sharpborder">
+                                <i class="pe-7s-cart"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="product-content">
+                <a class="product-name" href="/sanpham/@item.MaSp">@item.TenSp</a>
+                <div class="price-box pb-1">
+                    @if (item.GiaGiam < item.GiaBan && item.GiaGiam > 0)
+                    {
+                        <span class="new-price">@item.GiaGiam.Value.ToString("#,##0") ₫</span>
+                        <span class="old-price">@item.GiaBan.Value.ToString("#,##0") ₫</span>
+                    }
+                    else
+                    {
+                        <span class="new-price">@item.GiaBan.Value.ToString("#,##0") ₫</span>
+                    }
+                </div>
+                <div class="rating-box">
+                    <ul>
+                        <li><i class="fa fa-star"></i></li>
+                        <li><i class="fa fa-star"></i></li>
+                        <li><i class="fa fa-star"></i></li>
+                        <li><i class="fa fa-star"></i></li>
+                        <li><i class="fa fa-star-o"></i></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+}

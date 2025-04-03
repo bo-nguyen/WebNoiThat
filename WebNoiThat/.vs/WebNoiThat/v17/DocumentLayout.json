@@ -1,0 +1,54 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\WebNoiThat\\WebNoiThat\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{2820AF67-588C-42AD-AB2E-9D2D2F326A7A}|WebNoiThat\\WebNoiThat.csproj|d:\\webnoithat\\webnoithat\\webnoithat\\controllers\\checkoutcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2820AF67-588C-42AD-AB2E-9D2D2F326A7A}|WebNoiThat\\WebNoiThat.csproj|solutionrelative:webnoithat\\controllers\\checkoutcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2820AF67-588C-42AD-AB2E-9D2D2F326A7A}|WebNoiThat\\WebNoiThat.csproj|d:\\webnoithat\\webnoithat\\webnoithat\\modelviews\\muahangvm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2820AF67-588C-42AD-AB2E-9D2D2F326A7A}|WebNoiThat\\WebNoiThat.csproj|solutionrelative:webnoithat\\modelviews\\muahangvm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "MuaHangVM.cs",
+              "DocumentMoniker": "D:\\WebNoiThat\\WebNoiThat\\WebNoiThat\\ModelViews\\MuaHangVM.cs",
+              "RelativeDocumentMoniker": "WebNoiThat\\ModelViews\\MuaHangVM.cs",
+              "ToolTip": "D:\\WebNoiThat\\WebNoiThat\\WebNoiThat\\ModelViews\\MuaHangVM.cs",
+              "RelativeToolTip": "WebNoiThat\\ModelViews\\MuaHangVM.cs",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAAwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-03T08:22:35.609Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "CheckoutController.cs",
+              "DocumentMoniker": "D:\\WebNoiThat\\WebNoiThat\\WebNoiThat\\Controllers\\CheckoutController.cs",
+              "RelativeDocumentMoniker": "WebNoiThat\\Controllers\\CheckoutController.cs",
+              "ToolTip": "D:\\WebNoiThat\\WebNoiThat\\WebNoiThat\\Controllers\\CheckoutController.cs",
+              "RelativeToolTip": "WebNoiThat\\Controllers\\CheckoutController.cs",
+              "ViewState": "AgIAAGwAAAAAAAAAAAAowI4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-03T08:17:24.358Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

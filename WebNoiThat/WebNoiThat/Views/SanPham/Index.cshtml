@@ -1,0 +1,224 @@
+﻿@using PagedList.Core.Mvc
+@model PagedList.Core.IPagedList<WebNoiThat.Models.SanPham>
+@{
+
+    ViewData["Title"] = "Sản phẩm";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    int CurrentPage = ViewBag.CurrentPage;
+    int PageNext = CurrentPage + 1;
+    List<LoaiSanPham> dmsp = ViewBag.DMSP;
+    List<SanPham> spm = ViewBag.SPM;
+}
+
+
+<!-- Begin Main Content Area -->
+<main class="main-content">
+    <div class="breadcrumb-area breadcrumb-height" style="height:150px;background-color:#E3F0E1">
+        <div class="container h-100">
+            <div class="row h-100">
+                <div class="col-lg-12">
+                    <div class="breadcrumb-item">
+                        <h2 class="breadcrumb-heading" style="font-family:Verdana">Sản phẩm</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="shop-area section-space-y-axis-100">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 order-lg-1 order-2 pt-10 pt-lg-0">
+                    <div class="sidebar-area">
+                        <div class="widgets-searchbox mb-9">
+                            <form asp-controller="SanPham" asp-action="Index" method="get">
+                                <input class="input-field" name="searchKey" type="text" placeholder="Tìm">
+                                <button class="widgets-searchbox-btn" type="submit">
+                                    <i class="pe-7s-search"></i>
+                                </button>
+                            </form>
+                        </div>
+
+                        @await Html.PartialAsync("_DMSPPartialView", ViewBag.DMSP as IEnumerable<WebNoiThat.Models.LoaiSanPham>)
+                        <div class="widgets-area mb-9">
+                            <h2 class="widgets-title mb-5">Sản phẩm mới</h2>
+                            <div class="widgets-item">
+                                <div class="swiper-container widgets-list-slider">
+                                    <div class="swiper-wrapper">
+                                        <div class="swiper-slide">
+                                            @foreach (var item in spm)
+                                            {
+                                                <div class="product-list-item">
+                                                    <div class="product-img img-zoom-effect">
+                                                        <a href="sanpham/@item.MaSp">
+                                                            <img class="img-full" src="~/images/sanpham/@item.Anh" alt="Product Images">
+                                                        </a>
+                                                        <div class="product-add-action">
+                                                            <ul>
+                                                                <li>
+                                                                    <a href="cart.html">
+                                                                        <i class="pe-7s-cart"></i>
+                                                                    </a>
+                                                                </li>
+
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                    <div class="product-content">
+                                                        <a class="product-name" href="sanpham/@item.MaSp">@item.TenSp</a>
+                                                        <div class="price-box pb-1">
+                                                            <span class="old-price text-dark">@item.GiaBan.Value.ToString("#,##0") đ</span>
+                                                            <span class="new-price text-danger">@item.GiaGiam.Value.ToString("#,##0") đ</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            }
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-9 order-lg-2 order-1">
+                    <div class="product-topbar">
+                        <ul>
+                            <li class="product-view-wrap">
+                                <ul class="nav" role="tablist">
+                                    <li class="grid-view" role="presentation">
+                                        <a class="active" id="grid-view-tab" data-bs-toggle="tab" href="#grid-view" role="tab" aria-selected="true">
+                                            <i class="fa fa-th"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+
+                            <li class="short col-lg-2">
+                                <select id="sort_pros" name="sort_pros" class="nice-select wide rounded-0">
+                                    <option selected value="0">Sắp xếp</option>
+                                    <option value="1">Giá tăng dần</option>
+                                    <option value="2">Giá giảm dần</option>
+                                </select>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="tab-content text-charcoal pt-8">
+                        <div class="tab-pane fade show active" id="grid-view" role="tabpanel" aria-labelledby="grid-view-tab">
+                            <div class="product-grid-view row">
+                                @if (Model != null && Model.Count() > 0)
+                                {
+                                    foreach (var item in Model)
+                                    {
+                                        <div class="col-lg-4 col-sm-6 pt-6">
+                                            <div class="product-item">
+                                                <div class="product-img img-zoom-effect">
+                                                    <a href="sanpham/@item.MaSp">
+                                                        <img class="img-full" src="~/images/sanpham/@item.Anh" alt="Product Images">
+                                                    </a>
+                                                    <div class="product-add-action">
+                                                        <ul>
+                                                            <li class="add-to-cart">
+                                                                <a href="javascript:void(0)">
+                                                                    <i class="pe-7s-cart"></i>
+                                                                </a>
+                                                                <input hidden id="MaSp" name="MaSp" value="@item.MaSp" />
+
+                                                            </li>
+                                                            <li class="quantity">
+                                                                <div>
+                                                                    <input hidden id="txtsoLuong" name="txtsoLuong" class="cart-plus-minus-box" value="1" type="text">
+                                                                </div>
+                                                            </li>
+
+
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                <div class="product-content">
+                                                    <a style="display: block; height:72px" class="product-name" href="sanpham/@item.MaSp">@item.TenSp</a>
+                                                    <div class="price-box pb-1">
+                                                        <span class="old-price text-dark">@item.GiaBan.Value.ToString("#,##0") đ</span><br />
+                                                        <span class="new-price text-danger">@item.GiaGiam.Value.ToString("#,##0") đ</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                }
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="pagination-area pt-10">
+                        <ul class="pagination justify-content-center">
+                            <pager class="pager-container" options="@PagedListRenderOptions.Bootstrap4PageNumbersOnly" list="@Model" asp-controller="SanPham" asp-action="Index" />
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<!-- Main Content Area End Here -->
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            //add cart
+            $(function () {
+                function loadHeaderCart() {
+                    $("#miniCart").load("/AjaxContent/HeaderCart");
+                    $("#numberCart").load("/AjaxContent/NumberCart");
+                }
+                $(".add-to-cart").click(function () {
+                    var productid = $(this).children('#MaSp').val();
+                    var soLuong = $('#txtsoLuong').val();
+
+                    $.ajax({
+                        url: '/api/cart/add',
+                        datatype: "json",
+                        type: "POST",
+                        data: {
+                            productID: productid,
+                            amount: soLuong
+                        },
+                        success: function (response) {
+                            loadHeaderCart();
+                            location.reload();
+                        },
+                        error: function (error) {
+                            alert("Lỗi!" + error.responseText);
+                        }
+                    });
+                });
+            });
+
+            //sắp xếp
+            jQuery("#sort_pros").change(function () {
+                var sx = jQuery(this).children(":selected").attr("value");
+                sx = parseFloat(sx);
+
+                $('#sort_pros option')
+                    .removeAttr('selected');
+                $("#sort_pros > [value=" + sx + "]").attr("selected", "true");
+
+                $.ajax({
+                    url: 'sanpham/sort',
+                    datatype: "json",
+                    type: "GET",
+                    data: {
+                        sort: sx,
+                    },
+                    async: true,
+                    success: function (results) {
+                        if (results.status == "success") {
+                            window.location.href = results.redirectUrl;
+                        }
+                    },
+                    error: function (xhr) {
+                        alert('error');
+                    }
+                });
+            });
+        });
+    </script>
+}
